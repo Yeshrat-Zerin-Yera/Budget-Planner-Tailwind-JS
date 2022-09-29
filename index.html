@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Planner</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media (max-width:500px) {
+            main>section {
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-blue-100 to-sky-100">
+    <!-- Header -->
+    <header>
+        <h1 class="text-4xl md:text-6xl text-center mt-12"><span class="text-blue-800 font-semibold">Budget
+            </span>Planner
+        </h1>
+    </header>
+    <!-- Main -->
+    <main>
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-12 w-[80%] mx-auto">
+            <!-- Left -->
+            <div>
+                <img src="images/money.jpg" alt="Image of money" class="w-[100%] h-[100%] rounded-lg">
+            </div>
+            <!-- Right -->
+            <div class="bg-gradient-to-r from-black to-blue-800 rounded-lg p-8 md:p-12">
+                <!-- Income -->
+                <h2 class="text-2xl text-white text-center font-semibold">Income
+                </h2>
+                <div class="grid grid-cols-12 mt-4">
+                    <label for="income" class="font-semibold text-white text-lg col-span-2 py-2">Income</label>
+                    <input type="text" id="income" name="income"
+                        class="p-2 rounded-lg col-span-10 outline-blue-800 ml-4">
+                </div>
+                <small id="income-alert" class="text-red-600 text-center w-[100%] hidden">Negetive number
+                    is not
+                    allowed</small>
+                <small id="income-valid" class="text-red-600 text-center w-[100%] hidden">Enter a valid number</small>
+                <!-- Expenses -->
+                <h2 class="text-2xl text-white text-center font-semibold mt-4">Expenses</h2>
+                <!-- Food -->
+                <div class="grid grid-cols-12 mt-4">
+                    <label for="food" class="font-semibold text-white text-lg col-span-2 py-2">Food</label>
+                    <input type="text" id="food" name="food" class="p-2 rounded-lg col-span-10 outline-blue-800 ml-4">
+                </div>
+                <small id="food-alert" class="text-red-600 text-center w-[100%] hidden">Negetive number
+                    is not
+                    allowed</small>
+                <small id="food-valid" class="text-red-600 text-center w-[100%] hidden">Enter a valid number</small>
+                <!-- Rent -->
+                <div class="grid grid-cols-12 mt-4">
+                    <label for="rent" class="font-semibold text-white text-lg col-span-2 py-2">Rent</label>
+                    <input type="text" id="rent" name="rent" class="p-2 rounded-lg col-span-10 outline-blue-800 ml-4">
+                </div>
+                <small id="rent-alert" class="text-red-600 text-center w-[100%] hidden">Negetive number
+                    is not
+                    allowed</small>
+                <small id="rent-valid" class="text-red-600 text-center w-[100%] hidden">Enter a valid number</small>
+                <!-- Clothes -->
+                <div class="grid grid-cols-12 mt-4">
+                    <label for="clothes" class="font-semibold text-white text-lg col-span-2 py-2">Clothes</label>
+                    <input type="text" id="clothes" name="clothes"
+                        class="p-2 rounded-lg col-span-10 outline-blue-800 ml-4">
+                </div>
+                <small id="clothes-alert" class="text-red-600 text-center w-[100%] hidden">Negetive number
+                    is not
+                    allowed</small>
+                <small id="clothes-valid" class="text-red-600 text-center w-[100%] hidden">Enter a valid number</small>
+                <!-- Calculate Button -->
+                <button id="calculate-btn"
+                    class="text-lg font-semibold text-white bg-sky-400 hover:bg-sky-600 p-2 rounded-lg mt-4 mx-auto block transition duration-700 ease-in-out hover:scale-[115%]">Calculate</button>
+                <small id="expense-alert" class="text-red-600 block text-center mt-1 w-[100%] hidden">Expense can't
+                    be more
+                    than
+                    income</small>
+                <!-- Total Expense -->
+                <h2 class="text-2xl text-white font-semibold text-center mt-4">Total Expense: <span id="expense"></span>
+                </h2>
+                <!-- Balance -->
+                <h2 class="text-2xl text-white font-semibold text-center mt-4">Balance: <span id="balance"></span></h2>
+                <!-- Save -->
+                <div class="grid grid-cols-12 mt-12">
+                    <label for="save" class="font-semibold text-white text-lg col-span-2 py-2">Save</label>
+                    <input type="text" id="save" name="save" class="p-2 rounded-lg col-span-4 outline-blue-800">
+                    <h2 class="text-2xl text-white font-semibold text-center col-span-2">%</h2>
+                    <!-- Save Button -->
+                    <button id="save-btn"
+                        class="text-lg font-semibold text-white bg-sky-400 hover:bg-sky-600 rounded-lg py-2 px-4 mx-auto transition duration-700 ease-in-out hover:scale-[115%] col-span-4 w-[100%]">Save</button>
+                </div>
+                <small id="save-alert" class="text-red-600 text-center w-[100%] hidden mt-1">Negetive number
+                    is not
+                    allowed</small>
+                <small id="save-valid" class="text-red-600 text-center w-[100%] hidden mt-1">Enter a valid
+                    number</small>
+                <small id="percent-alert" class="text-red-600 text-center w-[100%] hidden mt-1">Percent can't be more
+                    than 100</small>
+                <small id="balance-alert" class="text-red-600 text-center w-[100%] hidden mt-1">You don't have enough
+                    balance</small>
+                <!-- Saving Amount -->
+                <h2 class="text-2xl text-white font-semibold text-center mt-4">Saving Amount: <span
+                        id="saving-amount"></span></h2>
+                <!-- Remaining Balance -->
+                <h2 class="text-2xl text-white font-semibold text-center mt-4">Remaining Balance: <span
+                        id="remaining-balance"></span>
+                </h2>
+            </div>
+        </section>
+    </main>
+    <script src="js/utility.js"></script>
+    <script src="js/calculate.js"></script>
+    <script src="js/save.js"></script>
+</body>
+
+</html>
